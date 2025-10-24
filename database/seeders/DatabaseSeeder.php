@@ -13,11 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+                // Urutan penting: Authors dulu, baru Books (karena foreign key)
+                $this->call([
+                    AuthorSeeder::class,
+                    BookSeeder::class,
         ]);
     }
 }
