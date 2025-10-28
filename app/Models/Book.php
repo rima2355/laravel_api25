@@ -19,6 +19,14 @@ class Book extends Model
     protected $casts = [
         'published_year' => 'integer',
     ];
+    /**
+     * Field yang disembunyikan saat JSON response
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+   
      /**
      * Relasi One-to-Many: Book belongsTo Author
      * Satu buku dimiliki oleh satu penulis

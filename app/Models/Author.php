@@ -15,6 +15,15 @@ class Author extends Model
     ];
 protected $casts = [
     'birthdate' => 'date',];
+
+    /**
+     * Field yang disembunyikan saat JSON response
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'birthdate'  // Sembunyikan birthdate juga
+    ];
     /**
      * Relasi One-to-Many: Author hasMany Books
      * Satu penulis dapat memiliki banyak buku

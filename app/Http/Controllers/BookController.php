@@ -12,12 +12,9 @@ class BookController extends Controller
      */
     public function index(): JsonResponse
     {
-        $books = Book::with('author')->get();
-        return response()->json([
-            'data' => $books,
-            'message' => 'Buku berhasil diambil',
-            'success' => true
-        ]);
+        $books = Book::with(relations:'author')->get();
+        return response()->json(
+            data: $books);
     }   
 
     /**
