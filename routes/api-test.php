@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Api\ProductCategoriesController;
 use App\Http\Controllers\VendorController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+                                                            
 
-Route::prefix('v1')->group (function () {
-    Route::resource('product-categories',ProductCategoriesController ::class);
+Route::prefix('v1')->group(function () {
+    Route::resource('products',ProductController::class);
 
     Route::get('/books', [BookController::class, 'index']);
     Route::get('/books/{id}', [BookController::class, 'show']);
@@ -18,8 +17,3 @@ Route::prefix('v1')->group (function () {
         return 'halo, Laravel';
     });
 });
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-

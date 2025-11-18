@@ -25,7 +25,7 @@ class BookSeeder extends Seeder
         ['title' => 'Bintang di Jakarta', 'author_id' => 4, 'published_year' => 2008, 'genre' => 'Novel'],
         ['title' => 'Bidadari di Jakarta', 'author_id' => 4, 'published_year' => 2009, 'genre' => 'Novel'],
         // Raditya Dika (author_id: 5) - 2 buku
-        ['title' => 'kambing jantan ', 'author_id' => 5, 'published_year' => 2005, 'genre' => 'Comedy'],
+        ['title' => 'kam bing jantan ', 'author_id' => 5, 'published_year' => 2005, 'genre' => 'Comedy'],
         ['title' => 'cinta brontosaurus', 'author_id' => 5, 'published_year' => 2006, 'genre' => 'Comedy'],
     ];
     foreach ($books as $book) {
