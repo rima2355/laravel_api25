@@ -14,7 +14,7 @@ class ProductVariantController extends Controller
      */
     public function index()
     {
-        $productVariants = ProductVariant::all();
+        $productVariants = ProductVariant::with('Products', 'Categories')->get();
         return response()->json($productVariants);
     }
 
