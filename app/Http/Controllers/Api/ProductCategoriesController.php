@@ -12,7 +12,7 @@ class ProductCategoriesController extends Controller
 
     public function index() 
     {
-        $productCategories = ProductCategory::all();
+        $productCategories = ProductCategory::with('products','variants')->get();
         return response()->json($productCategories);
     }
 

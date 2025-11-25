@@ -33,6 +33,7 @@ class ProductVariantController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
+            'product_category_id' => 'required|exists:product_categories,id',
             'product_id' => 'required|exists:products,id',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
@@ -72,13 +73,14 @@ class ProductVariantController extends Controller
         }
         $validatedData = $request->validate([
             'name' => 'required|max:255',
+            'product_category_id' => 'required|exists:product_categories,id',
             'product_id' => 'required|exists:products,id',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
         ]);
         $productVariant->update($validatedData);
         return response()->json([
-            'message' => 'Product variant updated successfully',
+            'message' => 'Product variant berhasil diganti',
             'data' => $productVariant
         ], 200);
     }
@@ -94,7 +96,7 @@ class ProductVariantController extends Controller
             return response()->json(['message' => 'Product variant not found'], 404);
         }
         $productVariant->delete();
-        return response()->json(['message' => 'Product variant deleted successfully']);
+        return response()->json(['message' => 'Product variant berhasil di hapus']);
     }
     
 }
