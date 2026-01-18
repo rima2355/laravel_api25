@@ -13,7 +13,10 @@ class ProductCategoriesController extends Controller
     public function index() 
     {
         $productCategories = ProductCategory::with('products','variants')->get();
-        return response()->json($productCategories);
+        return response()->json([
+            'data' =>$productCategories],
+             200);
+       
     }
 
     public function store(Request $request)
@@ -58,18 +61,22 @@ class ProductCategoriesController extends Controller
 
     public function destroy($id)
     {
-        try{
-        $category = ProductCategory::findOrFail($id);
+        \Log::info('Delete request received for ID: ' . $id);
+        
+        $category = ProductCategory::find($id);
+        
+        if (!$category) {
+            \Log::error('Category not found with ID: ' . $id);
+            return response()->json([
+                'message' => 'Category not found with ID: ' . $id
+            ], 404);
+        }
+        
         $category->delete();
 
         return response()->json([
             'message' => 'Category deleted successfully'
-        ], 201);
-        } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'Category not found'
-        ], 404);
+        ], 200);
     }
-}
     
 }

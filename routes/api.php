@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\Api\ProductCategoriesController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductVariantController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\VendorController;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
@@ -12,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('v1')->group (function () {
+    // Auth routes (public)
+    Route::post('/auth/register', [AuthController::class, 'register']);
+    Route::post('/auth/login', [AuthController::class, 'login']);
+    
+    // Auth routes (protected)
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/auth/logout', [AuthController::class, 'logout']);
+        Route::get('/auth/me', [AuthController::class, 'me']);
+    });
+
     Route::resource('product-categories',ProductCategoriesController ::class);
     Route::resource('products',ProductController::class);
     Route::resource('product-variant',ProductVariantController::class);
